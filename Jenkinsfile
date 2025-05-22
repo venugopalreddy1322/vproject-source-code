@@ -30,7 +30,8 @@ pipeline {
             steps {
                 //sh 'docker build -t venu1322/vproject:$BUILD_NUMBER .' 
                 script {
-                    docker.build(env.IMAGE_TAG)
+                    def imageTag = "${DOCKER_REGISTRY}:${env.BUILD_NUMBER}"
+                    docker.build(imageTag)
                 }
             }
         }
