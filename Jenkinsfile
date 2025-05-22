@@ -28,7 +28,9 @@ pipeline {
         stage('Build stage') {
             steps {
                 //sh 'docker build -t venu1322/vproject:$BUILD_NUMBER .' 
-                
+                script {
+                    docker.build(env.IMAGE_TAG)
+                }
             }
         }
         stage('Dockerhub Login') {
