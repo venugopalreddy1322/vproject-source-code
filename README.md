@@ -20,3 +20,13 @@ Whenever changes are made to the Python application in the **source code GitHub 
 
 ### 🔹 1. Application Source Code Repository  
 **GitHub Repo:** `https://github.com/venugopalreddy1322/git-argo-k8`
+#### Contains:
+| File/Folder      | Description |
+|------------------|-------------|
+| `app.py`         | A simple **Flask**-based Python application that returns a "Hello" message. |
+| `requirements.txt` | Python dependencies for the app (Flask, etc.). |
+| `Dockerfile`     | Docker configuration to containerize the app. |
+| `Jenkinsfile`    | CI pipeline to build, tag, and push the Docker image, then trigger manifest update. |
+| `.gitignore`     | Excludes unnecessary files from Git. |
+
+---
