@@ -3,7 +3,7 @@ pipeline {
     environment {
         DOCKER_REGISTRY = 'venu1322/vproject'
         //DOCKER_CREDS = credentials('dockerhub')
-        GIT_CREDS = 'github'
+        
     }
     stages {
         stage('Cleanup Stage') {
@@ -40,7 +40,7 @@ pipeline {
     }
     post {
         success {
-            echo "✅ Docker image built and pushed successfully: ${env.IMAGE_TAG}"
+            echo "✅ Docker image built and pushed successfully: ${imageTag}"
         }
         failure {
             echo "❌ Pipeline failed. Check logs."
