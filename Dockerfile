@@ -1,3 +1,4 @@
+# A MULTI-STAGE DOCKER FILE
 
 # Use an official Python base image for building dependencies
 FROM python:3.8-slim-buster AS builder
@@ -37,3 +38,19 @@ USER appuser
 # Command to start the Flask application (listens on all network interfaces)
 CMD ["flask", "run", "--host=0.0.0.0"]
 
+# Explanation:
+#python -m venv /opt/venv
+#This creates a virtual environment named /opt/venv using Python's built-in venv module.
+
+#A virtual environment is an isolated space where dependencies (like Python packages) are installed separately from system-wide Python.
+
+#This helps prevent version conflicts and ensures your application has the exact dependencies it needs.
+
+#2. && /opt/venv/bin/pip install --no-cache-dir -r requirements.txt
+#&& ensures that the next command runs only if the first one succeeds.
+
+#/opt/venv/bin/pip refers to the pip version inside the virtual environment.
+
+#install --no-cache-dir -r requirements.txt installs dependencies listed in requirements.txt into the virtual environment.
+
+#--no-cache-dir prevents pip from storing unnecessary cache files, reducing the size of the final Docker image.
