@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+*.venv
+.env
+.venv/
+.Python
+*.log
+
+# Pip
+pip-log.txt
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker
+*.tar
+*.bak
+docker-compose.override.yml
+.docker/
+
+# Jenkins
+workspace/
+.last_success
+.last_failure
+*.log
+
+# System
+.DS_Store
+Thumbs.db
+
+# Git
+*.orig
+.git
+git.sh
