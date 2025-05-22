@@ -1,12 +1,22 @@
 pipeline {
     agent any 
     environment {
+        DOCKER_REGISTRY = 'docker.io/venu1322/vproject'
         DOCKER_CREDS = credentials('dockerhub')
+        GIT_CREDS = 'github'
+        IMAGE_TAG = ''  // placeholder
     }
     stages {
         stage('Cleanup Stage') {
             steps {
                 deleteDir()
+            }
+        }
+        stage('Initialize') {
+            steps {
+                script {
+                    env.IMAGE_TAG = "${DOCKER_REGISTRY}:${env.BUILD_NUMBER}"
+                }
             }
         }
         stage('Copy Repo') {
@@ -17,7 +27,8 @@ pipeline {
         }
         stage('Build stage') {
             steps {
-                sh 'docker build -t venu1322/flask-jenkins-test:$BUILD_NUMBER ./gittodockerhub/' 
+                //sh 'docker build -t venu1322/vproject:$BUILD_NUMBER .' 
+                
             }
         }
         stage('Dockerhub Login') {
@@ -27,7 +38,7 @@ pipeline {
         }
         stage('Push Docker image to Docherhub') {
             steps{
-                sh 'docker push venu1322/flask-jenkins-test:$BUILD_NUMBER'
+                sh 'docker push venu1322/vproject:$BUILD_NUMBER'
             }
         }
     }
