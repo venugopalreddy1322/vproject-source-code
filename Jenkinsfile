@@ -30,8 +30,9 @@ pipeline {
             steps{
                 //sh 'docker push venu1322/vproject:$BUILD_NUMBER'
                 script {
+                    def imageTag = "${DOCKER_REGISTRY}:${env.BUILD_NUMBER}"
                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
-                        sh "docker push ${env.IMAGE_TAG}"
+                        sh "docker push ${imageTag}"
                     }
                 }
             }
