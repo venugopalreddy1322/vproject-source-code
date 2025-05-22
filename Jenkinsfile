@@ -33,11 +33,6 @@ pipeline {
                 }
             }
         }
-        stage('Dockerhub Login') {
-            steps {
-                sh 'echo $DOCKER_CREDS_PSW | docker login --username=$DOCKER_CREDS_USR --password-stdin'
-            }
-        }
         stage('Push Docker image to Docherhub') {
             steps{
                 sh 'docker push venu1322/vproject:$BUILD_NUMBER'
