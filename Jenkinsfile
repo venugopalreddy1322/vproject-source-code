@@ -16,6 +16,7 @@ pipeline {
             steps {
                 script {
                     env.IMAGE_TAG = "${DOCKER_REGISTRY}:${env.BUILD_NUMBER}"
+                    echo "IMAGE_TAG set to: ${env.IMAGE_TAG}"
                 }
             }
         }
