@@ -19,7 +19,7 @@ Whenever changes are made to the Python application in the **source code GitHub 
 ## 🗂️ Repository Structure
 
 ### 🔹 1. Application Source Code Repository  
-**GitHub Repo:** `https://github.com/venugopalreddy1322/git-argo-k8`
+**GitHub Repo:** `https://github.com/venugopalreddy1322/vproject-git-argo-k8`
 #### Contains:
 | File/Folder      | Description |
 |------------------|-------------|
@@ -27,6 +27,18 @@ Whenever changes are made to the Python application in the **source code GitHub 
 | `requirements.txt` | Python dependencies for the app (Flask, etc.). |
 | `Dockerfile`     | Docker configuration to containerize the app. |
 | `Jenkinsfile`    | CI pipeline to build, tag, and push the Docker image, then trigger manifest update. |
+| `.gitignore`     | Excludes unnecessary files from Git. |
+
+---
+### 🔹 2. Kubernetes Manifest Repository  
+**GitHub Repo:** `https://github.com/venugopalreddy1322/vproject-k8-manifest`
+
+#### Contains:
+| File/Folder      | Description |
+|------------------|-------------|
+| `deployment.yaml`| Kubernetes Deployment manifest. Updated automatically by Jenkins with new image tags. |
+| `vservice.yaml`  | Kubernetes Service manifest to expose the application. |
+| `Jenkinsfile`    | Pipeline to update image in `deployment.yaml` and commit to repo (triggered by Jenkinsfile1). |
 | `.gitignore`     | Excludes unnecessary files from Git. |
 
 ---
