@@ -4,20 +4,11 @@ pipeline {
         DOCKER_REGISTRY = 'venu1322/vproject'
         //DOCKER_CREDS = credentials('dockerhub')
         GIT_CREDS = 'github'
-        IMAGE_TAG = ''  // placeholder
     }
     stages {
         stage('Cleanup Stage') {
             steps {
                 deleteDir()
-            }
-        }
-        stage('Initialize') {
-            steps {
-                script {
-                    env.IMAGE_TAG = "${DOCKER_REGISTRY}:${env.BUILD_NUMBER}"
-                    echo "IMAGE_TAG set to: ${env.IMAGE_TAG}"
-                }
             }
         }
         stage('Copy Repo') {
