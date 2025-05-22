@@ -2,7 +2,7 @@ pipeline {
     agent any 
     environment {
         DOCKER_REGISTRY = 'docker.io/venu1322/vproject'
-        DOCKER_CREDS = credentials('dockerhub')
+        //DOCKER_CREDS = credentials('dockerhub')
         GIT_CREDS = 'github'
         IMAGE_TAG = ''  // placeholder
     }
@@ -35,7 +35,12 @@ pipeline {
         }
         stage('Push Docker image to Docherhub') {
             steps{
-                sh 'docker push venu1322/vproject:$BUILD_NUMBER'
+                //sh 'docker push venu1322/vproject:$BUILD_NUMBER'
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
+                        sh "docker push ${env.IMAGE_TAG}"
+                    }
+                }
             }
         }
     }
