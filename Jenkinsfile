@@ -44,9 +44,12 @@ pipeline {
             }
         }
     }
-    post{
-        always {
-            sh 'docker logout'
+    post {
+        success {
+            echo "✅ Docker image built and pushed successfully: ${env.IMAGE_TAG}"
+        }
+        failure {
+            echo "❌ Pipeline failed. Check logs."
         }
     }
 }
