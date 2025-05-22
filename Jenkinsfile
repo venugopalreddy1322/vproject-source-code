@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     environment {
-        DOCKER_REGISTRY = 'docker.io/venu1322/vproject'
+        DOCKER_REGISTRY = 'venu1322/vproject'
         //DOCKER_CREDS = credentials('dockerhub')
         GIT_CREDS = 'github'
         IMAGE_TAG = ''  // placeholder
