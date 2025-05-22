@@ -16,3 +16,7 @@ Whenever changes are made to the Python application in the **source code GitHub 
 5. **ArgoCD** monitors the Kubernetes manifests repository and automatically **synchronizes** the changes to deploy the latest version on **Amazon EKS**.
 
 ---
+## 🗂️ Repository Structure
+
+### 🔹 1. Application Source Code Repository  
+**GitHub Repo:** `https://github.com/venugopalreddy1322/git-argo-k8`
