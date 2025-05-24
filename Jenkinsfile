@@ -37,6 +37,12 @@ pipeline {
                 }
             }
         }
+        stage('TRIGGER JOB: updatemanifest ') {
+            steps{
+                echo 'Triggering updatemanifest Job'
+                build quietPeriod: 5, job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+            }
+        }
     }
     post {
         success {
