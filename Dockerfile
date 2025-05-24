@@ -27,6 +27,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 
 # Copy only the necessary application files
 COPY app.py .
+COPY templates/ templates/
 
 # Expose port 5000 so it can be accessed outside the container
 EXPOSE 5000
