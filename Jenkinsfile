@@ -5,6 +5,10 @@ pipeline {
         //DOCKER_CREDS = credentials('dockerhub')
         
     }
+    // Define imageTag globally
+    variables {
+        imageTag = ''
+    }
     stages {
         stage('Cleanup Stage') {
             steps {
@@ -21,7 +25,7 @@ pipeline {
             steps {
                 //sh 'docker build -t venu1322/vproject:$BUILD_NUMBER .' 
                 script {
-                    def imageTag = "${DOCKER_REGISTRY}:${env.BUILD_NUMBER}"
+                    imageTag = "${DOCKER_REGISTRY}:${env.BUILD_NUMBER}"
                     docker.build(imageTag)
                 }
             }
