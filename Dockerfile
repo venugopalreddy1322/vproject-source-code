@@ -1,31 +1,38 @@
-# Use a lightweight Python base image
-FROM python:3.8-alpine AS builder
-# First stage: Full-featured image for dependency installation
+# First Stage: Build Environment (Rich Base Image)
 FROM python:3.8-slim-buster AS builder
 
 WORKDIR /app
 
-# Install dependencies directly without a virtual environment
+# Copy dependency file first to leverage caching
 COPY requirements.txt .
+
+# Install dependencies efficiently without caching unnecessary files
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Final runtime stage with minimal dependencies
+# Second Stage: Minimal Runtime Environment (Lightweight)
 FROM python:3.8-alpine
 
 WORKDIR /app
 
-# Copy installed packages from the builder stage
-COPY --from=builder /usr/local/lib/python3.8/site-packages /usr/local/lib/python3.8/site-packages
-
-# Copy the Flask app files
-COPY app.py .
-COPY templates/ templates/
-
-# Expose port 5000
-EXPOSE 5000
-
-# Use a non-root user for security
+# Security: Create a non-root user without a home directory (lighter)
 RUN adduser -D appuser
+
+# Reduce attack surface by setting a safer environment
+ENV PYTHONUNBUFFERED=1
+
+# Copy only necessary files from builder
+COPY --from=builder /usr/local/lib/python3.8/site-packages /usr/local/lib/python3.8/site-packages
+COPY --chown=appuser:appuser app.py .
+COPY --chown=appuser:appuser templates/ templates/
+
+# Ensure proper ownership
+RUN chown -R appuser:appuser /app
+
+# Switch to non-root user
 USER appuser
 
+# Expose only necessary ports
+EXPOSE 5000
+
+# Secure execution of Flask
 CMD ["flask", "run", "--host=0.0.0.0"]
