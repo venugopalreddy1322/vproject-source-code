@@ -5,10 +5,6 @@ pipeline {
         //DOCKER_CREDS = credentials('dockerhub')
         
     }
-    // Define imageTag globally
-    variables {
-        imageTag = ''
-    }
     stages {
         stage('Cleanup Stage') {
             steps {
