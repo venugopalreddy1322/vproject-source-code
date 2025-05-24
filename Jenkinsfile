@@ -21,8 +21,8 @@ pipeline {
             steps {
                 //sh 'docker build -t venu1322/vproject:$BUILD_NUMBER .' 
                 script {
-                    env.imageTag = "${DOCKER_REGISTRY}:${env.BUILD_NUMBER}"
-                    docker.build(env.imageTag)
+                    env.IMAGETAG = "${DOCKER_REGISTRY}:${env.BUILD_NUMBER}"
+                    docker.build(env.IMAGETAG)
                 }
             }
         }
@@ -32,7 +32,7 @@ pipeline {
                 script {
                     //imageTag = "${DOCKER_REGISTRY}:${env.BUILD_NUMBER}"
                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
-                        sh "docker push ${env.imageTag}"
+                        sh "docker push ${env.IMAGETAG}"
                     }
                 }
             }
@@ -40,7 +40,7 @@ pipeline {
     }
     post {
         success {
-            echo "✅ Docker image built and pushed successfully: ${env.imageTag}"
+            echo "✅ Docker image built and pushed successfully: ${env.IMAGETAG}"
         }
         failure {
             echo "❌ Pipeline failed. Check logs."
