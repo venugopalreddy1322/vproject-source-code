@@ -6,19 +6,49 @@
     <title>Hello World</title>
     <style>
         body {
-            background: linear-gradient(135deg, #f06, #4a90e2);
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             text-align: center;
-            padding-top: 50px;
+            padding-top: 20vh;
+            overflow: hidden;
         }
         h1 {
-            font-size: 4em;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            font-size: 5em;
+            text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px white; }
+            100% { text-shadow: 0 0 20px white; }
+        }
+        .container {
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            width: 60%;
+            margin: auto;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 25px;
+            background-color: #ff7eb3;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.5em;
+            transition: 0.3s;
+        }
+        .button:hover {
+            background-color: #ff758c;
         }
     </style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
+    <div class="container">
+        <h1>Hello, World! 🌍✨</h1>
+        <button class="button" onclick="alert('Welcome to the fascinating world of Flask! 🚀')">Click Me!</button>
+    </div>
 </body>
 </html>
