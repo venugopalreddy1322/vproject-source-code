@@ -43,6 +43,8 @@ Whenever changes are made to the Python application in the **source code GitHub 
 
 
 For webhook to trigger Jenkins job
-Settings of repo to synch --> webhook --> add webhook ---> Payload URL:<http://static-ip of Jenkins-server>:8080/github-webhook/  --->Content Type: application/json --> select 'Just the Push event'
+Settings of repo to synch --> webhook --> add webhook ---> Payload URL:<http://static-ip of Jenkins-server>:8080/github-webhook/  --->Content Type: application/json --> select 'Just the Push event' --> Click 'Add webhook'
+
+Then Goto Jenkins UI --> Your job --> configure --> Under 'Build Triggers' select 'GitHub hook trigger for GITScm Poling' --> Save
 
 ---
