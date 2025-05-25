@@ -35,4 +35,6 @@ USER appuser
 EXPOSE 5000
 
 # Secure execution of Flask
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["python", "-m", "flask", "run", "--host=0.0.0.0"]
+
+# CMD ["flask", "run", "--host=0.0.0.0"]
