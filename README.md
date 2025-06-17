@@ -64,6 +64,44 @@ vproject-source-code/
    ```sh
    http://[JENKINS_SERVER_IP]:8080/github-webhook/
    ```
+   ## NOTE:(IF YOU INSTALL JENKINS SERVER ON WSL2)
+   a common setup issue when using Jenkins on WSL2. Your Jenkins server is working internally, but GitHub can’t reach the WSL2-hosted webhook because:
+
+⚠️ WSL2 IP addresses (like 172.30.130.64) are not reachable from the public internet.
+
+So while your browser (on the same machine or LAN) can access http://172.30.130.64:8082, GitHub's webhook service cannot connect to a private/internal IP like that.
+FIX:
+✅ Fix: Expose Jenkins Webhook to GitHub Using ngrok
+GitHub needs a public URL to send webhook POST requests to. You can solve this by tunneling your local Jenkins server to the internet using ngrok:
+
+🔧 Steps
+Install ngrok (if not already):
+Install ngrok via Apt with the following command:
+
+```sh
+curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
+  | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null \
+  && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" \
+  | sudo tee /etc/apt/sources.list.d/ngrok.list \
+  && sudo apt update \
+  && sudo apt install ngrok
+```
+Run the following command to add your authtoken to the default ngrok.yml configuration file.
+```sh
+ngrok config add-authtoken xxxxxxxxxxxx
+```
+Start ngrok on your Jenkins port (8082):
+```sh
+hostname -I   (to get wsl ip address)
+ngrok http http://wsl-IP:8082
+```
+Copy the public URL, e.g. https://abcd1234.ngrok.io.
+
+Update your GitHub webhook URL to:
+
+https://abcd1234.ngrok.io/github-webhook/
+
+
 4. **Content Type:**  
    ```sh
    application/json
