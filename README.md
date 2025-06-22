@@ -247,7 +247,7 @@ Start ngrok on your Jenkins port (8082):
 
 bash
 Copy
-Edit
+
 ngrok http 8082
 You’ll see output like:
 
