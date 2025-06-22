@@ -245,22 +245,17 @@ sudo mv ngrok /usr/local/bin
 ```
 Start ngrok on your Jenkins port (8082):
 
-
-
+```bash
 ngrok http 8082
+```
 You’ll see output like:
 
-nginx
-Copy
-Edit
+
 Forwarding                    https://abcd1234.ngrok.io -> http://localhost:8082
 Copy the public URL, e.g. https://abcd1234.ngrok.io.
 
 Update your GitHub webhook URL to:
 
-bash
-Copy
-Edit
 https://abcd1234.ngrok.io/github-webhook/
 Save, then click "Redeliver" on the GitHub webhook page to test it.
 
