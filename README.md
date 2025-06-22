@@ -284,9 +284,7 @@ Sign up for ngrok
 
 Use a reserved domain with:
 
-bash
-Copy
-Edit
+
 ngrok config add-authtoken YOUR_TOKEN
 ngrok http --domain=yourcustomsub.ngrok.io 8082
 
