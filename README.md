@@ -225,6 +225,81 @@ argocd app sync flaskdemo
 
 ---
 
+a common setup issue when using Jenkins on WSL2. Your Jenkins server is working internally, but GitHub can’t reach the WSL2-hosted webhook because:
+
+⚠️ WSL2 IP addresses (like 172.30.130.64) are not reachable from the public internet.
+
+So while your browser (on the same machine or LAN) can access http://172.30.130.64:8082, GitHub's webhook service cannot connect to a private/internal IP like that.
+
+✅ Fix: Expose Jenkins Webhook to GitHub Using ngrok
+GitHub needs a public URL to send webhook POST requests to. You can solve this by tunneling your local Jenkins server to the internet using ngrok:
+
+🔧 Steps
+Install ngrok (if not already):
+
+bash
+Copy
+Edit
+sudo apt install unzip
+wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+unzip ngrok-stable-linux-amd64.zip
+sudo mv ngrok /usr/local/bin
+Start ngrok on your Jenkins port (8082):
+
+bash
+Copy
+Edit
+ngrok http 8082
+You’ll see output like:
+
+nginx
+Copy
+Edit
+Forwarding                    https://abcd1234.ngrok.io -> http://localhost:8082
+Copy the public URL, e.g. https://abcd1234.ngrok.io.
+
+Update your GitHub webhook URL to:
+
+bash
+Copy
+Edit
+https://abcd1234.ngrok.io/github-webhook/
+Save, then click "Redeliver" on the GitHub webhook page to test it.
+
+✅ Also: Confirm Jenkins GitHub Webhook Endpoint
+Your Jenkins webhook endpoint should be:
+
+arduino
+Copy
+Edit
+https://your-public-url/github-webhook/
+You can confirm Jenkins is set up to receive GitHub webhooks via:
+
+Jenkins > Manage Jenkins > Configure System
+
+Look for the GitHub plugin section
+
+Check that GitHub Web Hook is enabled
+
+Also verify that the Jenkins job has:
+
+"GitHub project" URL set correctly
+
+"Build when a change is pushed to GitHub" checked (in Build Triggers)
+
+✅ Optional: Auto-start ngrok with consistent subdomain
+If you want to keep the same URL without changing the webhook every time:
+
+Sign up for ngrok
+
+Use a reserved domain with:
+
+bash
+Copy
+Edit
+ngrok config add-authtoken YOUR_TOKEN
+ngrok http --domain=yourcustomsub.ngrok.io 8082
+
 ## ✅ Summary
 
 This setup provides an automated CI/CD pipeline using:
