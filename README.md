@@ -238,7 +238,7 @@ GitHub needs a public URL to send webhook POST requests to. You can solve this b
 Install ngrok (if not already):
 
 bash
-Copy
+
 Edit
 sudo apt install unzip
 wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
