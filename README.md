@@ -262,9 +262,6 @@ Save, then click "Redeliver" on the GitHub webhook page to test it.
 ✅ Also: Confirm Jenkins GitHub Webhook Endpoint
 Your Jenkins webhook endpoint should be:
 
-arduino
-Copy
-Edit
 https://your-public-url/github-webhook/
 You can confirm Jenkins is set up to receive GitHub webhooks via:
 
