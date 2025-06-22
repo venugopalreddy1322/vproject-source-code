@@ -245,8 +245,7 @@ sudo mv ngrok /usr/local/bin
 ```
 Start ngrok on your Jenkins port (8082):
 
-bash
-Copy
+
 
 ngrok http 8082
 You’ll see output like:
