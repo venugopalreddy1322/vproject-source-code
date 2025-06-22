@@ -237,13 +237,12 @@ GitHub needs a public URL to send webhook POST requests to. You can solve this b
 🔧 Steps
 Install ngrok (if not already):
 
-bash
-
-Edit
+```bash
 sudo apt install unzip
 wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
 unzip ngrok-stable-linux-amd64.zip
 sudo mv ngrok /usr/local/bin
+```
 Start ngrok on your Jenkins port (8082):
 
 bash
